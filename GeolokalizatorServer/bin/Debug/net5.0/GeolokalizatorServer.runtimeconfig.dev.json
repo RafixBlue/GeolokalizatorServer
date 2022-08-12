@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\rafix\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\rafix\\.nuget\\packages"
+    ]
+  }
+}

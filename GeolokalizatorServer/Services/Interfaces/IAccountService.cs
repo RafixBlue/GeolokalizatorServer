@@ -1,4 +1,5 @@
-﻿using GeolokalizatorSerwer.Entities;
+﻿using GeolokalizatorServer.Models;
+using GeolokalizatorSerwer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace GeolokalizatorSerwer.Services.Interfaces
 {
     public interface IAccountService
     {
-        List<Role> GetAllRoles();
+        public List<Role> GetAllRoles();
+        public bool checkUser(LoginDto dto);
+        public void RegisterUser(RegisterUserDto dto);
     }
 }

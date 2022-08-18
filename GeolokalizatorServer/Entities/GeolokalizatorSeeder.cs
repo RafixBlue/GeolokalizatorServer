@@ -99,11 +99,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 1, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -120,11 +120,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 2, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -141,11 +141,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 3, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -162,11 +162,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 4, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -183,11 +183,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 5, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -204,11 +204,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 6, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -225,11 +225,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 8, 7, 0),
-                        Accurency ="234"
+                        Accuracy ="10"
                     }
                 },
                 new User_Data()
@@ -246,11 +246,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 2, 8, 8, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 },
                 new User_Data()
@@ -267,11 +267,11 @@ namespace GeolokalizatorSerwer.Entities
                     },
                     Location = new Location()
                     {
-                        Latitude = "234",
-                        Altitude = "234",
-                        Longitude="234",
+                        Latitude = "1",
+                        Altitude = "1",
+                        Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 9, 0),
-                        Accurency ="234"
+                        Accuracy ="234"
                     }
                 }
             };

@@ -34,10 +34,13 @@ namespace GeolokalizatorServer
 
             services.AddControllers();
 
+            services.AddAutoMapper(this.GetType().Assembly);//automaper
+
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
+            services.AddScoped<ICollectedDataService, CollectedDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

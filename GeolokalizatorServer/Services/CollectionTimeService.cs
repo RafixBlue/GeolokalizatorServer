@@ -30,8 +30,9 @@ namespace GeolokalizatorServer.Services
 
             var availableYears = _dbContext.Locations
                 .Where(x => locationIDs.Contains(x.ID))
-                .OrderBy(x => x.DateTime)
+                .OrderBy(dt => dt.DateTime)
                 .Select(dt => dt.DateTime.Year)
+                .Distinct()
                 .ToList();
 
             return availableYears;
@@ -46,6 +47,7 @@ namespace GeolokalizatorServer.Services
                 .Where(l => locationIDs.Contains(l.ID) && (l.DateTime.Year == year))
                 .OrderBy(x => x.DateTime)
                 .Select(dt => dt.DateTime.Month)
+                .Distinct()
                 .ToList();
 
             return availableMonth;
@@ -59,6 +61,7 @@ namespace GeolokalizatorServer.Services
                 .Where(l => locationIDs.Contains(l.ID) && (l.DateTime.Year == year) && (l.DateTime.Month == month))
                 .OrderBy(x => x.DateTime)
                 .Select(dt => dt.DateTime.Day)
+                .Distinct()
                 .ToList();
 
             return availableMonth;
@@ -73,6 +76,7 @@ namespace GeolokalizatorServer.Services
                 .Where(l => locationIDs.Contains(l.ID) && (l.DateTime.Year == year) && (l.DateTime.Month == month) && (l.DateTime.Day == day))
                 .OrderBy(x => x.DateTime)
                 .Select(dt => dt.DateTime.Hour)
+                .Distinct()
                 .ToList();
 
             return availableMonth;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GeolokalizatorServer.Controllers
 {
-    [Route("time")]
+    [Route("geolokalizator/time")]
     [ApiController]
     public class CollectionTimeController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace GeolokalizatorServer.Controllers
         }
 
         [HttpGet("month")]
-        public ActionResult<IEnumerable<Location>> GetAvailableMonths([FromQuery] int userId, int year)
+        public ActionResult<IEnumerable<Location>> GetAvailableMonths([FromQuery]int userId, [FromQuery]int year)
         {
             var availableYears = _timeService.GetAvailableMonths(userId,year);
 
@@ -37,7 +37,7 @@ namespace GeolokalizatorServer.Controllers
         }
 
         [HttpGet("day")]
-        public ActionResult<IEnumerable<Location>> GetAvailableDays([FromQuery] int userId, int year, int month)
+        public ActionResult<IEnumerable<Location>> GetAvailableDays([FromQuery]int userId, [FromQuery]int year, [FromQuery]int month)
         {
             var availableYears = _timeService.GetAvailableDays(userId,year,month);
 
@@ -45,7 +45,7 @@ namespace GeolokalizatorServer.Controllers
         }
 
         [HttpGet("hour")]
-        public ActionResult<IEnumerable<Location>> GetAvailableHours([FromQuery] int userId, int year, int month, int day)
+        public ActionResult<IEnumerable<Location>> GetAvailableHours([FromQuery]int userId, [FromQuery]int year, [FromQuery]int month, [FromQuery]int day)
         {
             var availableYears = _timeService.GetAvailableHours(userId, year, month, day);
 

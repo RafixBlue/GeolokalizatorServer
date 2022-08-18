@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2022-08-18T09:18:19.3412172Z;True|2022-08-15T06:21:02.3704308+02:00;</History>
+  </PropertyGroup>
+</Project>

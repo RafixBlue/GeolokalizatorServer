@@ -26,7 +26,7 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Accurency")
+                    b.Property<string>("Accuracy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Altitude")

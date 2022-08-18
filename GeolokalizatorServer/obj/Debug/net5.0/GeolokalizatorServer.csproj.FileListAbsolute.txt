@@ -54,3 +54,9 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\ref\GeolokalizatorServer.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.pdb
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.genruntimeconfig.cache
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

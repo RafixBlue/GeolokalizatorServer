@@ -118,7 +118,7 @@ namespace GeolokalizatorServer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Synchronisations");
+                    b.ToTable("Synchronizations");
                 });
 
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.User", b =>

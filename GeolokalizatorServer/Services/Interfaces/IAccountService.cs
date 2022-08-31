@@ -10,7 +10,7 @@ namespace GeolokalizatorSerwer.Services.Interfaces
     public interface IAccountService
     {
         public List<Role> GetAllRoles();
-        public bool checkUser(LoginDto dto);
+        public string GenerateJwt(LoginDto dto);
         public void RegisterUser(RegisterUserDto dto);
     }
 }

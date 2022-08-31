@@ -18,7 +18,7 @@ namespace GeolokalizatorSerwer.Entities
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Synchronisation> Synchronisations { get; set; }
+        public DbSet<Synchronization> Synchronizations { get; set; }
 
         public DbSet<Location> Locations { get; set; }
         public DbSet<Signal> Signals { get; set; }
@@ -38,27 +38,6 @@ namespace GeolokalizatorSerwer.Entities
             modelBuilder.Entity<Role>()
                 .Property(n => n.Name)
                 .IsRequired();
-
-            modelBuilder.Entity<Synchronisation>()
-                .Property(dn => dn.DeviceName)
-                .IsRequired();
-
-            /*modelBuilder.Entity<User_Data>()
-                .Property(s => s.Signal)
-                .IsRequired();
-
-            modelBuilder.Entity<User_Data>()
-                .Property(l => l.Location)
-                .IsRequired();*/
-
-            /*modelBuilder.Entity<Location>()
-                .Property(a => a.Accurency)
-                .IsRequired();*/
-
-            /*modelBuilder.Entity<Signal>()
-                .Property(nt => nt.Network_Type)
-                .IsRequired();*/
-
 
         }
 

@@ -19,5 +19,6 @@ namespace GeolokalizatorServer.Models
         public string RSRP { get; set; }
         public string RSRQ { get; set; }
         public string RSSNR { get; set; }
+        public string TimeZone { get; set; }
     }
 }

@@ -21,7 +21,6 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
@@ -60,3 +59,8 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

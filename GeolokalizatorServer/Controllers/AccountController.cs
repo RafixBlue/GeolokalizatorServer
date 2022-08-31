@@ -33,9 +33,9 @@ namespace GeolokalizatorSerwer.Controllers
         public ActionResult Login([FromBody]LoginDto dto)
         {
 
-            var login = _accountService.checkUser(dto);
+            var token = _accountService.GenerateJwt(dto);
 
-            return Ok(login);
+            return Ok(token);
         }
 
         //test requests

@@ -39,7 +39,50 @@ namespace GeolokalizatorSerwer.Entities
                     _dbContext.UserDatas.AddRange(usersData);
                     _dbContext.SaveChanges();
                 }
+
+                if (!_dbContext.Synchronizations.Any())
+                {
+                    var synchronizations = GetSynchronizations();
+                    _dbContext.Synchronizations.AddRange(synchronizations);
+                    _dbContext.SaveChanges();
+                }
             }
+        }
+
+        private IEnumerable<Synchronization> GetSynchronizations()
+        {
+            var synchronizations = new List<Synchronization>
+            {
+                new Synchronization()
+                {
+                    DeviceNumber = 1,
+                    LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
+                    TimeZone = "test1",
+                    UserID = 1,
+                },
+                new Synchronization()
+                {
+                    DeviceNumber = 1,
+                    LastSynchronization = new DateTime(2007, 12, 22, 6, 0, 0),
+                    TimeZone = "test1",
+                    UserID = 1,
+                },
+                new Synchronization()
+                {
+                    DeviceNumber = 1,
+                    LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
+                    TimeZone = "test2",
+                    UserID = 1,
+                },
+                new Synchronization()
+                {
+                    DeviceNumber = 1,
+                    LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
+                    TimeZone = "test2",
+                    UserID = 1,
+                },
+            };
+            return synchronizations;
         }
 
         private IEnumerable<User> GetUsers()
@@ -103,6 +146,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 1, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -124,6 +168,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 2, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -145,6 +190,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 3, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -166,6 +212,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 4, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -187,6 +234,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 5, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -208,6 +256,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 6, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -229,6 +278,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 8, 7, 0),
+                        TimeZone = "test1",
                         Accuracy ="10"
                     }
                 },
@@ -250,6 +300,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 2, 8, 8, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 },
@@ -271,6 +322,7 @@ namespace GeolokalizatorSerwer.Entities
                         Altitude = "1",
                         Longitude="1",
                         DateTime= new DateTime(2008, 3, 1, 7, 9, 0),
+                        TimeZone = "test1",
                         Accuracy ="234"
                     }
                 }

@@ -41,6 +41,9 @@ namespace GeolokalizatorServer.Migrations
                     b.Property<string>("Longitude")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TimeZone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Locations");
@@ -92,22 +95,21 @@ namespace GeolokalizatorServer.Migrations
                     b.ToTable("Signals");
                 });
 
-            modelBuilder.Entity("GeolokalizatorSerwer.Entities.Synchronisation", b =>
+            modelBuilder.Entity("GeolokalizatorSerwer.Entities.Synchronization", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DeviceName")
-                        .IsRequired()
+                    b.Property<int>("DeviceNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastSynchronization")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TimeZone")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FirstSynchronisation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("LastSynchronisationTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -116,7 +118,7 @@ namespace GeolokalizatorServer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Synchronisations");
+                    b.ToTable("Synchronizations");
                 });
 
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.User", b =>
@@ -170,10 +172,12 @@ namespace GeolokalizatorServer.Migrations
 
                     b.HasIndex("SignalID");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("UserDatas");
                 });
 
-            modelBuilder.Entity("GeolokalizatorSerwer.Entities.Synchronisation", b =>
+            modelBuilder.Entity("GeolokalizatorSerwer.Entities.Synchronization", b =>
                 {
                     b.HasOne("GeolokalizatorSerwer.Entities.User", "User")
                         .WithMany()
@@ -209,9 +213,17 @@ namespace GeolokalizatorServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GeolokalizatorSerwer.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Location");
 
                     b.Navigation("Signal");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

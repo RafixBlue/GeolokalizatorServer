@@ -16,6 +16,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GeolokalizatorServer.Services;
 using GeolokalizatorServer.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using FluentValidation;
+using GeolokalizatorServer.Models.Validators;
+using GeolokalizatorServer.Models;
+using FluentValidation.AspNetCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GeolokalizatorServer
 {
@@ -31,16 +38,43 @@ namespace GeolokalizatorServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authenticationSettings = new AuthenticationSettings();
+            Configuration.GetSection("Authentication").Bind(authenticationSettings);
+            services.AddSingleton(authenticationSettings);
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = "Bearer";
+                option.DefaultScheme = "Bearer";
+                option.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = authenticationSettings.JwtIssuer,
+                    ValidAudience = authenticationSettings.JwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
+                };
+            });
+            
 
             services.AddControllers();
 
+            services.AddFluentValidationAutoValidation();//validation
+
             services.AddAutoMapper(this.GetType().Assembly);//automaper
+
 
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
             services.AddScoped<ICollectedDataService, CollectedDataService>();
+            services.AddScoped<ISynchronizationService, SynchronizationService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +86,8 @@ namespace GeolokalizatorServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 

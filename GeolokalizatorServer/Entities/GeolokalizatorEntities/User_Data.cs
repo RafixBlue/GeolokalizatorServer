@@ -10,6 +10,7 @@ namespace GeolokalizatorSerwer.Entities
         public int ID { get; set; }
 
         public int UserID { get; set; }
+        public virtual User User { get; set;}
 
         public int SignalID { get; set; }
         public virtual Signal Signal { get; set; }

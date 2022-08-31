@@ -13,5 +13,6 @@ namespace GeolokalizatorSerwer.Entities
         public string Longitude { get; set; }
         public DateTime DateTime { get; set; }
         public string Accuracy { get; set; }
+        public string TimeZone { get; set; }
     }
 }

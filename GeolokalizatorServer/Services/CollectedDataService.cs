@@ -50,5 +50,7 @@ namespace GeolokalizatorServer.Services
             return UserCollectedData;
 
         }
+
+        
     }
 }

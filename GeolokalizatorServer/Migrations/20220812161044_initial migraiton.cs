@@ -105,7 +105,7 @@ namespace GeolokalizatorServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Synchronisations",
+                name: "Synchronizations",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -128,7 +128,7 @@ namespace GeolokalizatorServer.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Synchronisations_UserID",
-                table: "Synchronisations",
+                table: "Synchronizations",
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
@@ -150,7 +150,7 @@ namespace GeolokalizatorServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Synchronisations");
+                name: "Synchronizations");
 
             migrationBuilder.DropTable(
                 name: "UserDatas");

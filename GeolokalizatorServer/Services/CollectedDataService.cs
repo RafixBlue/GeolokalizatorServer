@@ -14,15 +14,19 @@ namespace GeolokalizatorServer.Services
     {
         private readonly GeolokalizatorDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IUserContextService _userContextService;
 
-        public CollectedDataService(GeolokalizatorDbContext dbContext, IMapper mapper)
+        public CollectedDataService(GeolokalizatorDbContext dbContext, IMapper mapper, IUserContextService userContextService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _userContextService = userContextService;
         }
 
-        public List<CollectedDataMapDto> CollectedDataMapHour(int userId, int year, int month, int day, int hour)
+        public List<CollectedDataMapDto> CollectedDataMapHour(int year, int month, int day, int hour)
         {
+            var userId = _userContextService.GetUserId;
+
             var UserData = _dbContext.UserDatas
                 .Include(ud => ud.Signal)
                 .Include(ud => ud.Location)
@@ -36,8 +40,10 @@ namespace GeolokalizatorServer.Services
 
         }
 
-        public List<CollectedDataGraphDto> CollectedDataGraphHour(int userId, int year, int month, int day, int hour)
+        public List<CollectedDataGraphDto> CollectedDataGraphHour(int year, int month, int day, int hour)
         {
+            var userId = _userContextService.GetUserId;
+
             var UserData = _dbContext.UserDatas
                 .Include(ud => ud.Signal)
                 .Include(ud => ud.Location)

@@ -5,7 +5,6 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.runtimeconfig.json
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.runtimeconfig.dev.json
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.dll
-C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\ref\GeolokalizatorServer.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.pdb
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Humanizer.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
@@ -45,7 +44,6 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.csproj.CoreCompileInputs.cache
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\staticwebassets\GeolokalizatorServer.StaticWebAssets.Manifest.cache
-C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\staticwebassets\GeolokalizatorServer.StaticWebAssets.xml
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\scopedcss\bundle\GeolokalizatorServer.styles.css
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.RazorTargetAssemblyInfo.cache
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.csproj.CopyComplete
@@ -64,3 +62,5 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.StaticWebAssets.xml
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\refint\GeolokalizatorServer.dll

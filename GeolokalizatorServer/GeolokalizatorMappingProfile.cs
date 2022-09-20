@@ -21,7 +21,10 @@ namespace GeolokalizatorServer
                 .ForMember(m => m.TimeZone, c => c.MapFrom(l => l.Location.TimeZone))
                 .ForMember(m => m.Network_Provider, c => c.MapFrom(s => s.Signal.Network_Provider))
                 .ForMember(m => m.Network_Type, c => c.MapFrom(s => s.Signal.Network_Type))
-                ;
+                .ForMember(m => m.RSSI, c => c.MapFrom(s => s.Signal.RSSI))
+                .ForMember(m => m.RSRQ, c => c.MapFrom(s => s.Signal.RSRQ))
+                .ForMember(m => m.RSRP, c => c.MapFrom(s => s.Signal.RSRP))
+                .ForMember(m => m.RSSNR, c => c.MapFrom(s => s.Signal.RSSNR));
 
             CreateMap<User_Data, CollectedDataGraphDto>()
                 .ForMember(m => m.DateTime, c => c.MapFrom(l => l.Location.DateTime.Minute.ToString()))
@@ -64,6 +67,9 @@ namespace GeolokalizatorServer
 
             CreateMap<SynchronizationDto, Synchronization>()
                 .ForMember(m => m.LastSynchronization, c => c.MapFrom(x => x.NewSynchronizationDate));
+
+            CreateMap<User, AccountInfoDto>();
+                
         }
     }
 }

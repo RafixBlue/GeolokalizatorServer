@@ -9,7 +9,7 @@ namespace GeolokalizatorServer.Services.Interfaces
 {
     public interface ICollectedDataService
     {
-        public List<CollectedDataMapDto> CollectedDataMapHour(int userId, int year, int month, int day, int hour);
-        public List<CollectedDataGraphDto> CollectedDataGraphHour(int userId, int year, int month, int day, int hour);
+        public List<CollectedDataMapDto> CollectedDataMapHour(int year, int month, int day, int hour);
+        public List<CollectedDataGraphDto> CollectedDataGraphHour(int year, int month, int day, int hour);
     }
 }

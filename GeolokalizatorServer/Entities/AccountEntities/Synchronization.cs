@@ -10,8 +10,6 @@ namespace GeolokalizatorSerwer.Entities
     {
         public int ID { get; set; }
 
-        public int DeviceNumber { get; set; }
-
         public DateTime LastSynchronization { get; set; }
         public string TimeZone { get; set; }
         public int UserID { get; set; }

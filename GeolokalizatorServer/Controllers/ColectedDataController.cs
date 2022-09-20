@@ -2,6 +2,7 @@
 using GeolokalizatorServer.Services;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace GeolokalizatorServer.Controllers
 {
     [Route("geolokalizator/data")]
     [ApiController]
+    [Authorize]
     public class ColectedDataController : ControllerBase
     {
         public readonly ICollectedDataService _collectedDataService;
@@ -22,17 +24,17 @@ namespace GeolokalizatorServer.Controllers
         }
 
         [HttpGet("map/hour")]
-        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int userId, [FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
+        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
 {
-            var mapData = _collectedDataService.CollectedDataMapHour(userId, year, month, day, hour);
+            var mapData = _collectedDataService.CollectedDataMapHour(year, month, day, hour);
 
             return Ok(mapData);
         }
 
         [HttpGet("graph/hour")]
-        public ActionResult<IEnumerable<CollectedDataGraphDto>> GetDataForGraphHour([FromQuery] int userId, [FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
+        public ActionResult<IEnumerable<CollectedDataGraphDto>> GetDataForGraphHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
         {
-            var graphData = _collectedDataService.CollectedDataGraphHour(userId, year, month, day, hour);
+            var graphData = _collectedDataService.CollectedDataGraphHour(year, month, day, hour);
             
             return Ok(graphData);
         }

@@ -55,28 +55,24 @@ namespace GeolokalizatorSerwer.Entities
             {
                 new Synchronization()
                 {
-                    DeviceNumber = 1,
                     LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
                     TimeZone = "test1",
                     UserID = 1,
                 },
                 new Synchronization()
                 {
-                    DeviceNumber = 1,
                     LastSynchronization = new DateTime(2007, 12, 22, 6, 0, 0),
                     TimeZone = "test1",
                     UserID = 1,
                 },
                 new Synchronization()
                 {
-                    DeviceNumber = 1,
                     LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
                     TimeZone = "test2",
                     UserID = 1,
                 },
                 new Synchronization()
                 {
-                    DeviceNumber = 1,
                     LastSynchronization = new DateTime(2007, 12, 31, 6, 0, 0),
                     TimeZone = "test2",
                     UserID = 1,

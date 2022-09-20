@@ -26,7 +26,6 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Releas
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\Microsoft.IdentityModel.Protocols.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\Microsoft.IdentityModel.Tokens.dll
-C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\Newtonsoft.Json.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\System.Configuration.ConfigurationManager.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\System.Diagnostics.DiagnosticSource.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\System.IdentityModel.Tokens.Jwt.dll
@@ -47,3 +46,8 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Releas
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Release\net5.0\linux-x64\ref\GeolokalizatorServer.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Release\net5.0\linux-x64\GeolokalizatorServer.pdb
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Release\net5.0\linux-x64\GeolokalizatorServer.genruntimeconfig.cache
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\FluentValidation.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\FluentValidation.AspNetCore.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Release\net5.0\linux-x64\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Release\net5.0\linux-x64\GeolokalizatorServer.MvcApplicationPartsAssemblyInfo.cs

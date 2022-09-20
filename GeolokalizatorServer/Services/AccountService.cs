@@ -1,5 +1,7 @@
-﻿using GeolokalizatorServer;
+﻿using AutoMapper;
+using GeolokalizatorServer;
 using GeolokalizatorServer.Models;
+using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
 using GeolokalizatorSerwer.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -21,12 +23,28 @@ namespace GeolokalizatorSerwer.Services
         private readonly GeolokalizatorDbContext _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly IUserContextService _userContextService;
+        private readonly IMapper _mapper;
 
-        public AccountService(GeolokalizatorDbContext dbContext, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings)
+        public AccountService(GeolokalizatorDbContext dbContext, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings, IUserContextService userContextService, IMapper mapper)
         {
             _dbContext = dbContext;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
+            _userContextService = userContextService;
+            _mapper = mapper;
+        }
+
+        public AccountInfoDto GetAccountInfo()
+        {
+            var userId = _userContextService.GetUserId;
+
+            var user = _dbContext.Users
+                .Where(u => u.ID == userId).FirstOrDefault();
+
+            var accountInfo = _mapper.Map<AccountInfoDto>(user);
+
+            return accountInfo;
         }
 
         public List<Role> GetAllRoles()

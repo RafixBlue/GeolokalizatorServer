@@ -1,6 +1,8 @@
-﻿using GeolokalizatorServer.Models;
+﻿using GeolokalizatorServer.Migrations;
+using GeolokalizatorServer.Models;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace GeolokalizatorServer.Controllers
 {
     [Route("geolokalizator/synchronization")]
     [ApiController]
+    [Authorize]
     public class DbSynchronizationController : ControllerBase
     {
         private readonly ISynchronizationService _synchronizationService;
@@ -20,22 +23,33 @@ namespace GeolokalizatorServer.Controllers
             _synchronizationService = synchronizationService;
         }
 
-        [HttpGet("get/last")]
-        public ActionResult GetLastSynchronizationByUser([FromQuery] int userId)
+        [HttpPost("insert/timezone")]
+        public ActionResult PostTimeZone([FromBody] List<String> dto)
         {
-            var lastSynchronizations = _synchronizationService.GetLastSynchronizationDate(userId);
+            _synchronizationService.AddMissingTimeZones(dto);
+
+            return Ok();
+        }
+
+       
+        [HttpGet("get/timezone")]
+        public ActionResult GetLastSynchronizationDateTime()
+        {
+            var lastSynchronizations = _synchronizationService.GetLastSynchronizationDate();
 
             return Ok(lastSynchronizations);
         }
 
-        [HttpGet("get/data")]
+        /*[HttpGet("get/data")]
         public ActionResult GetData([FromQuery] int userId, [FromBody] SynchronizationDateTimeDto dto)
         {
 
             var lastSynchronizations = _synchronizationService.GetDataForSynchronization(userId, dto);
 
             return Ok(lastSynchronizations);
-        }
+        }*/
+
+        
 
         [HttpPost("insert/data")]
         public ActionResult PostData([FromBody] List<SynchronizationDataDto> dto)
@@ -44,22 +58,6 @@ namespace GeolokalizatorServer.Controllers
             _synchronizationService.InsertCollectedData(dto);
 
             return Ok();
-        }
-
-        [HttpPost("insert/new/device")]
-        public ActionResult PostNewDevice([FromBody] List<SynchronizationDataDto> dto)
-        {
-            _synchronizationService.InsertCollectedData(dto);
-
-            return Ok();
-        }
-
-        [HttpGet("get/new/number")]
-        public ActionResult GetnewDeviceNumber([FromQuery] int userId)
-        {
-            var newNumber = _synchronizationService.GetNewDeviceNumber(userId);
-
-            return Ok(newNumber);
         }
 
         [HttpPatch("update/lastdate")]

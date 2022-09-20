@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GeolokalizatorServer.Migrations;
 using GeolokalizatorServer.Models;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
@@ -15,16 +16,20 @@ namespace GeolokalizatorServer.Services
     public class SynchronizationService : ISynchronizationService
     {
         private readonly GeolokalizatorDbContext _dbContext;
+        private readonly IUserContextService _userContextService;
         private readonly IMapper _mapper;
 
-        public SynchronizationService(GeolokalizatorDbContext dbContext,IMapper mapper)
+        public SynchronizationService(GeolokalizatorDbContext dbContext, IUserContextService userContextService, IMapper mapper)
         {
             _dbContext = dbContext;
+            _userContextService = userContextService;
             _mapper = mapper;
-    }
+        }
 
-        public List<SynchronizationDateTimeDto> GetLastSynchronizationDate(int userId)
+        public List<SynchronizationDateTimeDto> GetLastSynchronizationDate()
         {
+            var userId = _userContextService.GetUserId;
+
             var lastSynchronization = _dbContext.Synchronizations
                 .Where(s => s.UserID == userId)
                 .GroupBy(s => s.TimeZone)
@@ -39,8 +44,10 @@ namespace GeolokalizatorServer.Services
             return lastSynchronizations;
         }
 
-        public List<SynchronizationDataDto> GetDataForSynchronization(int userId, SynchronizationDateTimeDto synchronizationDto)
+        public List<SynchronizationDataDto> GetDataForSynchronization(SynchronizationDateTimeDto synchronizationDto)
         {
+            var userId = _userContextService.GetUserId;
+
             var UserData = _dbContext.UserDatas
                .Include(ud => ud.Signal)
                .Include(ud => ud.Location)
@@ -65,26 +72,13 @@ namespace GeolokalizatorServer.Services
                 
         }
 
-        public int? GetNewDeviceNumber(int userId)
-        {
-            var maxDeviceNumber = _dbContext.Synchronizations.Where(x => x.UserID == userId)
-                .Max(x => (int?)x.DeviceNumber);
-
-            var newDeviceNumber = maxDeviceNumber + 1;
-
-            if (maxDeviceNumber is null)
-            {
-                newDeviceNumber = 1;
-            }
-
-            return newDeviceNumber;
-        }
+       
 
         public void UpdateDeviceLastSynchronizationDate(SynchronizationDto dto)
         {
-            var synchronizationToUpdate = _dbContext
-                .Synchronizations
-                .FirstOrDefault(x => x.UserID == dto.UserId && x.DeviceNumber == dto.DeviceNumber && String.Equals(x.TimeZone, dto.TimeZone));
+            var synchronizationToUpdate = _dbContext.Synchronizations
+                .FirstOrDefault(x => x.UserID == dto.UserId  
+                && String.Equals(x.TimeZone, dto.TimeZone));
 
             //if (synchronizationToUpdate is null) throw new NotFoundException("Synchro not found");
 
@@ -100,10 +94,71 @@ namespace GeolokalizatorServer.Services
 
         }
 
+        private int getUserIdFromName(string userName)
+        {
+            var userId = _dbContext.Users
+                .Where(u => string.Equals(u.Name, userName))
+                .Select(u => u.ID)
+                .First();
+
+            return userId;
+        }
+
+
+
+
+
+
+
+
+
+        public void AddMissingTimeZones(List<string> clientTimeZones)
+        {
+            var userId = _userContextService.GetUserId;
+
+            var serverTimeZones = _dbContext.Synchronizations
+                .Where(s => s.UserID == userId)
+                .Select(s => s.TimeZone)
+                .ToList();
+
+            var missingTimeZones = clientTimeZones
+                .Except(serverTimeZones)
+                .ToList();
+
+            var synchronizations = new List<Synchronization>();
+
+            foreach (var timeZone in missingTimeZones)
+            {
+                synchronizations.Add(new Synchronization
+                {
+                    UserID = userId.GetValueOrDefault(),
+                    TimeZone = timeZone,
+                });
+            }
+
+            _dbContext.AddRange(synchronizations);
+            _dbContext.SaveChanges();
+
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void InsertNewDeviceSynchronization(SynchronizationDto dto)
         {
-            var test = _mapper.Map<Synchronization>(dto);
-            _dbContext.Synchronizations.Add(test);
+            var map = _mapper.Map<Synchronization>(dto);
+            _dbContext.Synchronizations.Add(map);
             _dbContext.SaveChanges();
 
         }

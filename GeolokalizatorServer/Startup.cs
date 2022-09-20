@@ -39,14 +39,18 @@ namespace GeolokalizatorServer
         public void ConfigureServices(IServiceCollection services)
         {
             var authenticationSettings = new AuthenticationSettings();
+
             Configuration.GetSection("Authentication").Bind(authenticationSettings);
             services.AddSingleton(authenticationSettings);
-            services.AddAuthentication(option =>
+
+            services
+                .AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = "Bearer";
                 option.DefaultScheme = "Bearer";
                 option.DefaultChallengeScheme = "Bearer";
-            }).AddJwtBearer(cfg =>
+            })
+                .AddJwtBearer(cfg =>
             {
                 cfg.RequireHttpsMetadata = false;
                 cfg.SaveToken = true;
@@ -65,13 +69,16 @@ namespace GeolokalizatorServer
 
             services.AddAutoMapper(this.GetType().Assembly);//automaper
 
-
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
             services.AddScoped<ICollectedDataService, CollectedDataService>();
             services.AddScoped<ISynchronizationService, SynchronizationService>();
+            services.AddScoped<IUserContextService, UserContextService>();
+
+            services.AddHttpContextAccessor();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
@@ -93,7 +100,7 @@ namespace GeolokalizatorServer
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

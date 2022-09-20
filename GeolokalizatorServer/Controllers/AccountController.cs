@@ -2,6 +2,7 @@
 using GeolokalizatorSerwer.Entities;
 using GeolokalizatorSerwer.Services;
 using GeolokalizatorSerwer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -38,8 +39,21 @@ namespace GeolokalizatorSerwer.Controllers
             return Ok(token);
         }
 
+        
+        [HttpGet("info")]
+        [Authorize]
+        public ActionResult Info()
+        {
+
+            var accountInfo = _accountService.GetAccountInfo();
+
+            return Ok(accountInfo);
+        }
+
+
         //test requests
         [HttpGet("roles")]
+        [Authorize]
         public ActionResult<IEnumerable<Role>> GetAllRoles()
         {
             var allRoles = _accountService.GetAllRoles();
@@ -49,6 +63,7 @@ namespace GeolokalizatorSerwer.Controllers
         }
 
         [HttpGet("test")]
+        [Authorize]
         public ActionResult<IEnumerable<Role>> GetTest()// [FromQuery] int userId, [FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour
         {
             //var allRoles = _accountService.GetAllRoles();

@@ -39,6 +39,11 @@ namespace GeolokalizatorSerwer.Entities
                 .Property(n => n.Name)
                 .IsRequired();
 
+            modelBuilder.Entity<Synchronization>()
+                .Property(s => s.LastSynchronization)
+                .HasDefaultValue(new DateTime(2000, 1, 1, 0, 0,0));
+
+
         }
 
         /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

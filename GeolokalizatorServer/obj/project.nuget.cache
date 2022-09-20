@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lrNutLcn8EALbebDaF9xEJey7KTXtlWdXjlVB4YfSsGSa3JZR0CExi6SCjTjdUC+Ar+v232BdZpTgfHAKySfwQ==",
+  "dgSpecHash": "3UZNYHcam7K9xh/v1efNrNZpc2U1OUjTpR7G/aqooUM69UIcGgGabMlN/500Y9PzoIRTlm6WDaQp0k/f2ApdPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\rafix\\source\\repos\\GeolokalizatorServer\\GeolokalizatorServer\\GeolokalizatorServer.csproj",
   "expectedPackageFiles": [
@@ -102,7 +102,8 @@
     "C:\\Users\\rafix\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\rafix\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\rafix\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\rafix\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\rafix\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\rafix\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }

@@ -22,6 +22,14 @@ namespace GeolokalizatorServer.Controllers
             _timeService = time;
         }
 
+        [HttpGet("timezone")]
+        public ActionResult<IEnumerable<Location>> GetAvailableTimeZones()
+        {
+            var availableTimezones = _timeService.GetAvailableTimeZones();
+
+            return Ok(availableTimezones);
+        }
+
         [HttpGet("year")]
         public ActionResult<IEnumerable<Location>> GetAvailableYears()
         {

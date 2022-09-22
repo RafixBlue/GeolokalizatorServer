@@ -62,5 +62,4 @@ C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\GeolokalizatorServer.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\bin\Debug\net5.0\GeolokalizatorServer.StaticWebAssets.xml
 C:\Users\rafix\source\repos\GeolokalizatorServer\GeolokalizatorServer\obj\Debug\net5.0\refint\GeolokalizatorServer.dll

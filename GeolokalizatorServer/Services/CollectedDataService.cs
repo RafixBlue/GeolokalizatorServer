@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GeolokalizatorServer.Exceptions;
 using GeolokalizatorServer.Models;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
@@ -27,16 +28,18 @@ namespace GeolokalizatorServer.Services
         {
             var userId = _userContextService.GetUserId;
 
-            var UserData = _dbContext.UserDatas
+            var userData = _dbContext.UserDatas
                 .Include(ud => ud.Signal)
                 .Include(ud => ud.Location)
                 .Where(ud => ud.UserID == userId && ud.Location.DateTime.Year == year && ud.Location.DateTime.Month == month && ud.Location.DateTime.Day == day && ud.Location.DateTime.Hour == hour)
                 .OrderBy(ud => ud.Location.DateTime)
                 .ToList();
 
-            var UserCollectedData = _mapper.Map<List<CollectedDataMapDto>>(UserData);
+            if(userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters");  }
 
-            return UserCollectedData;
+            var userCollectedData = _mapper.Map<List<CollectedDataMapDto>>(userData);
+
+            return userCollectedData;
 
         }
 
@@ -44,14 +47,16 @@ namespace GeolokalizatorServer.Services
         {
             var userId = _userContextService.GetUserId;
 
-            var UserData = _dbContext.UserDatas
+            var userData = _dbContext.UserDatas
                 .Include(ud => ud.Signal)
                 .Include(ud => ud.Location)
                 .Where(ud => ud.UserID == userId && ud.Location.DateTime.Year == year && ud.Location.DateTime.Month == month && ud.Location.DateTime.Day == day && ud.Location.DateTime.Hour == hour)
                 .OrderBy(ud => ud.Location.DateTime)
                 .ToList();
 
-            var UserCollectedData = _mapper.Map<List<CollectedDataGraphDto>>(UserData);
+            if (userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters"); }
+
+            var UserCollectedData = _mapper.Map<List<CollectedDataGraphDto>>(userData);
 
             return UserCollectedData;
 

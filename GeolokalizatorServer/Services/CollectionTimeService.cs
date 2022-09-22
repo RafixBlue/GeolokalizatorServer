@@ -26,6 +26,24 @@ namespace GeolokalizatorServer.Services
             return locationIDs;
         }
 
+        public List<string> GetAvailableTimeZones()
+        {
+
+            //var userId = _userContextService.GetUserId;
+
+            var locationIDs = GetLocationIdListByUser(1);
+
+            var availableTimeZones = _dbContext.Locations
+                .Where(x => locationIDs.Contains(x.ID))
+                .OrderBy(x => x.TimeZone)
+                .Select(x => x.TimeZone)
+                .Distinct()
+                .ToList();
+
+            return availableTimeZones;
+
+        }
+
         public List<int> GetAvailableYears()
         {
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeolokalizatorServer;
+using GeolokalizatorServer.Exceptions;
 using GeolokalizatorServer.Models;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
@@ -42,6 +43,8 @@ namespace GeolokalizatorSerwer.Services
             var user = _dbContext.Users
                 .Where(u => u.ID == userId).FirstOrDefault();
 
+            if (user == null) { throw new NotFoundException("User not found"); }
+
             var accountInfo = _mapper.Map<AccountInfoDto>(user);
 
             return accountInfo;
@@ -59,7 +62,7 @@ namespace GeolokalizatorSerwer.Services
 
         public void RegisterUser(RegisterUserDto dto)
         {
-            //Add validations
+           
             var newUser = new User()
             {
                 Name = dto.Name,
@@ -82,16 +85,14 @@ namespace GeolokalizatorSerwer.Services
 
             if (user is null)
             {
-                //throw new BadHttpRequestException("Invalid username or password");
-                return "";
+                throw new BadHttpRequestException("Invalid username or password");           
             }
 
             var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
 
             if(result == PasswordVerificationResult.Failed)
             {
-                //throw new BadHttpRequestException("Invalid username or password");
-                return "";
+                throw new BadHttpRequestException("Invalid username or password");
             }
 
             var claims = new List<Claim>

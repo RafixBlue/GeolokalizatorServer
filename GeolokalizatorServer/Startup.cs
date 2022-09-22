@@ -23,6 +23,7 @@ using GeolokalizatorServer.Models;
 using FluentValidation.AspNetCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using GeolokalizatorServer.Middleware;
 
 namespace GeolokalizatorServer
 {
@@ -72,11 +73,13 @@ namespace GeolokalizatorServer
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
 
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
             services.AddScoped<ICollectedDataService, CollectedDataService>();
             services.AddScoped<ISynchronizationService, SynchronizationService>();
             services.AddScoped<IUserContextService, UserContextService>();
+            services.AddScoped<ErrorHandlingMiddleware>();
 
             services.AddHttpContextAccessor();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
@@ -93,6 +96,8 @@ namespace GeolokalizatorServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseAuthentication();
 

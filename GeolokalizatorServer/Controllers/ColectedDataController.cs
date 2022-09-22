@@ -21,6 +21,7 @@ namespace GeolokalizatorServer.Controllers
         public ColectedDataController(ICollectedDataService collectedDataService)
         {
             _collectedDataService = collectedDataService;
+            
         }
 
         [HttpGet("map/hour")]

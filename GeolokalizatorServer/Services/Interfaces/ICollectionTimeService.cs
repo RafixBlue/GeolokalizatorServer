@@ -8,6 +8,7 @@ namespace GeolokalizatorServer.Services.Interfaces
 {
     public interface ICollectionTimeService
     {
+        public List<string> GetAvailableTimeZones();
         public List<int> GetAvailableYears();
         public List<int> GetAvailableMonths(int year);
         public List<int> GetAvailableDays(int year, int month);

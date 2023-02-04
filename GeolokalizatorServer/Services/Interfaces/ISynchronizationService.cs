@@ -8,11 +8,11 @@ namespace GeolokalizatorServer.Services.Interfaces
 {
     public interface ISynchronizationService
     {
-        public List<SynchronizationDateTimeDto> GetLastSynchronizationDate();
-        public List<SynchronizationDataDto> GetDataForSynchronization(SynchronizationDateTimeDto synchronizationDto);
+        public SynchronizationDateTimeDto GetLastSynchronizationDate();
+        //public List<SynchronizationDataDto> GetDataForSynchronization(SynchronizationDateTimeDto synchronizationDto);
         public void InsertCollectedData(List<SynchronizationDataDto> dto);
-        public void UpdateDeviceLastSynchronizationDate(SynchronizationDto dto);
-        public void InsertNewDeviceSynchronization(SynchronizationDto dto);
-        public void AddMissingTimeZones(List<string> clientTimeZones);
+        //public void UpdateDeviceLastSynchronizationDate(SynchronizationDto dto);
+        //public void InsertNewDeviceSynchronization(SynchronizationDto dto);
+        //public void AddMissingTimeZones(List<string> clientTimeZones);
     }
 }

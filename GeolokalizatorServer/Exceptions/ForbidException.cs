@@ -1,6 +1,8 @@
-﻿namespace GeolokalizatorServer.Exceptions
+﻿using System;
+
+namespace GeolokalizatorServer.Exceptions
 {
-    public class ForbidException
+    public class ForbidException : Exception
     {
     }
 }

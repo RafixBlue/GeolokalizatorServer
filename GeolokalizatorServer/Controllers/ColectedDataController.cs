@@ -24,21 +24,21 @@ namespace GeolokalizatorServer.Controllers
             
         }
 
-        [HttpGet("map/hour")]
-        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
-{
-            var mapData = _collectedDataService.CollectedDataMapHour(year, month, day, hour);
+//        [HttpGet("map/hour")]
+//        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
+//{
+//            var mapData = _collectedDataService.CollectedDataMapHour(year, month, day, hour);
 
-            return Ok(mapData);
-        }
+//            return Ok(mapData);
+//        }
 
-        [HttpGet("graph/hour")]
-        public ActionResult<IEnumerable<CollectedDataGraphDto>> GetDataForGraphHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
-        {
-            var graphData = _collectedDataService.CollectedDataGraphHour(year, month, day, hour);
+//        [HttpGet("graph/hour")]
+//        public ActionResult<IEnumerable<CollectedDataGraphDto>> GetDataForGraphHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
+//        {
+//            var graphData = _collectedDataService.CollectedDataGraphHour(year, month, day, hour);
             
-            return Ok(graphData);
-        }
+//            return Ok(graphData);
+//        }
 
     }
 }

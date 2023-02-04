@@ -27,7 +27,7 @@ namespace GeolokalizatorSerwer.Controllers
         public ActionResult Register([FromBody] RegisterUserDto dto)
         {
             _accountService.RegisterUser(dto);
-            return Ok();
+            return Ok("Account Registered");
         }
 
         [HttpPost("login")]
@@ -63,7 +63,6 @@ namespace GeolokalizatorSerwer.Controllers
         }
 
         [HttpGet("test")]
-        [Authorize]
         public ActionResult<IEnumerable<Role>> GetTest()// [FromQuery] int userId, [FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour
         {
             //var allRoles = _accountService.GetAllRoles();

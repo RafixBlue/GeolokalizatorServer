@@ -31,33 +31,33 @@ namespace GeolokalizatorServer.Controllers
         }
 
         [HttpGet("year")]
-        public ActionResult<IEnumerable<Location>> GetAvailableYears()
+        public ActionResult<IEnumerable<Location>> GetAvailableYears([FromQuery] string timeZone)
         {
-            var availableYears = _timeService.GetAvailableYears();
+            var availableYears = _timeService.GetAvailableYears(timeZone);
 
             return Ok(availableYears);
         }
 
         [HttpGet("month")]
-        public ActionResult<IEnumerable<Location>> GetAvailableMonths([FromQuery]int year)
+        public ActionResult<IEnumerable<Location>> GetAvailableMonths([FromQuery] int year, [FromQuery] string timeZone)
         {
-            var availableYears = _timeService.GetAvailableMonths(year);
+            var availableYears = _timeService.GetAvailableMonths(year, timeZone);
 
             return Ok(availableYears);
         }
 
         [HttpGet("day")]
-        public ActionResult<IEnumerable<Location>> GetAvailableDays([FromQuery]int year, [FromQuery]int month)
+        public ActionResult<IEnumerable<Location>> GetAvailableDays([FromQuery] int year, [FromQuery] int month, [FromQuery] string timeZone)
         {
-            var availableYears = _timeService.GetAvailableDays(year,month);
+            var availableYears = _timeService.GetAvailableDays(year, month, timeZone);
 
             return Ok(availableYears);
         }
 
         [HttpGet("hour")]
-        public ActionResult<IEnumerable<Location>> GetAvailableHours([FromQuery]int year, [FromQuery]int month, [FromQuery]int day)
+        public ActionResult<IEnumerable<Location>> GetAvailableHours([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] string timeZone)
         {
-            var availableYears = _timeService.GetAvailableHours(year, month, day);
+            var availableYears = _timeService.GetAvailableHours(year, month, day, timeZone);
 
             return Ok(availableYears);
         }

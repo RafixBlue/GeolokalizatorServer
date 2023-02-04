@@ -4,14 +4,16 @@ using GeolokalizatorSerwer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GeolokalizatorServer.Migrations
 {
     [DbContext(typeof(GeolokalizatorDbContext))]
-    partial class GeolokalizatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230107140638_thistime")]
+    partial class thistime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,16 +34,16 @@ namespace GeolokalizatorServer.Migrations
                     b.Property<string>("Altitude")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Latitude")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Longitude")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Speed")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpeedAccuracy")
+                    b.Property<string>("TimeZone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -72,37 +74,22 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Asu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Bandwidth")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Earfcn")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Network_Provider")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Network_Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rsrp")
+                    b.Property<string>("RSRP")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rsrq")
+                    b.Property<string>("RSRQ")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rssi")
+                    b.Property<string>("RSSI")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rssnr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ta")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tac")
+                    b.Property<string>("RSSNR")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -142,13 +129,16 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleID")
@@ -171,14 +161,8 @@ namespace GeolokalizatorServer.Migrations
                     b.Property<int>("LocationID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("MeasurementTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("SignalID")
                         .HasColumnType("int");
-
-                    b.Property<string>("TimeZone")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");

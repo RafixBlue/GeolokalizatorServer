@@ -63,12 +63,13 @@ namespace GeolokalizatorServer
                 };
             });
             
-
             services.AddControllers();
 
-            services.AddFluentValidationAutoValidation();//validation
+            //validation
+            services.AddFluentValidationAutoValidation();
 
-            services.AddAutoMapper(this.GetType().Assembly);//automaper
+            //automaper
+            services.AddAutoMapper(this.GetType().Assembly);
 
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
@@ -76,11 +77,12 @@ namespace GeolokalizatorServer
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
-            services.AddScoped<ICollectedDataService, CollectedDataService>();
+            //services.AddScoped<ICollectedDataService, CollectedDataService>();
             services.AddScoped<ISynchronizationService, SynchronizationService>();
             services.AddScoped<IUserContextService, UserContextService>();
-            services.AddScoped<ErrorHandlingMiddleware>();
 
+            services.AddScoped<ErrorHandlingMiddleware>();
+            
             services.AddHttpContextAccessor();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
@@ -101,7 +103,7 @@ namespace GeolokalizatorServer
 
             app.UseAuthentication();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

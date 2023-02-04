@@ -11,8 +11,11 @@ namespace GeolokalizatorSerwer.Entities
         public int ID { get; set; }
 
         public DateTime LastSynchronization { get; set; }
+
         public string TimeZone { get; set; }
+
         public int UserID { get; set; }
+
         public virtual User User { get; set; }
     }
 }

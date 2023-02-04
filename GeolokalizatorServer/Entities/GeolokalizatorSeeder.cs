@@ -27,25 +27,25 @@ namespace GeolokalizatorSerwer.Entities
                     _dbContext.Database.Migrate();
                 }
 
-                if (!_dbContext.Users.Any())
-                {
-                    var users = GetUsers();
-                    _dbContext.Users.AddRange(users);
-                    _dbContext.SaveChanges();
-                }
-                if (!_dbContext.UserDatas.Any())
-                {
-                    var usersData = GetUserData();
-                    _dbContext.UserDatas.AddRange(usersData);
-                    _dbContext.SaveChanges();
-                }
+                //if (!_dbContext.Users.Any())
+                //{
+                //    var users = GetUsers();
+                //    _dbContext.Users.AddRange(users);
+                //    _dbContext.SaveChanges();
+                //}
+                //if (!_dbContext.UserDatas.Any())
+                //{
+                //    var usersData = GetUserData();
+                //    _dbContext.UserDatas.AddRange(usersData);
+                //    _dbContext.SaveChanges();
+                //}
 
-                if (!_dbContext.Synchronizations.Any())
-                {
-                    var synchronizations = GetSynchronizations();
-                    _dbContext.Synchronizations.AddRange(synchronizations);
-                    _dbContext.SaveChanges();
-                }
+                //if (!_dbContext.Synchronizations.Any())
+                //{
+                //    var synchronizations = GetSynchronizations();
+                //    _dbContext.Synchronizations.AddRange(synchronizations);
+                //    _dbContext.SaveChanges();
+                //}
             }
         }
 
@@ -88,7 +88,6 @@ namespace GeolokalizatorSerwer.Entities
                 new User()
                 {
                     Name = "TestUser",
-                    Email = "testuser@test.com",
                     PasswordHash = "hashHere",
                     Role = new Role()
                     {
@@ -97,8 +96,7 @@ namespace GeolokalizatorSerwer.Entities
                 },
                 new User()
                 {
-                    Name = "TestManager",
-                    Email = "testManager@test.com",
+                    Name = "TestManager",                   
                     PasswordHash = "hashHere",
                     Role = new Role()
                     {
@@ -108,7 +106,6 @@ namespace GeolokalizatorSerwer.Entities
                 new User()
                 {
                     Name = "TestAdmin",
-                    Email = "testAdmin@test.com",
                     PasswordHash = "hashHere",
                     Role = new Role()
                     {
@@ -127,199 +124,262 @@ namespace GeolokalizatorSerwer.Entities
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 1, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 2, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
-                        Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 3, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Longitude="1",                       
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 4, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 5, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 6, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 8, 7, 0),
-                        TimeZone = "test1",
-                        Accuracy ="10"
+                        Accuracy ="10",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 2, 8, 8, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 },
                 new User_Data()
                 {
                     UserID = 1,
+                    MeasurementTime = new DateTime(2008, 3, 1, 7, 1, 0),
+                    TimeZone = "test1",
                     Signal = new Signal()
                     {
                         Network_Provider = "Test Mobile",
                         Network_Type = "LTE",
-                        RSSI = "234",
-                        RSRP = "234",
-                        RSRQ = "234",
-                        RSSNR = "234",
+                        Bandwidth = "254",
+                        Earfcn = "288",
+                        Tac = "213",
+                        Asu = "654",
+                        Ta="543",
+                        Rssi = "234",
+                        Rsrp = "234",
+                        Rsrq = "234",
+                        Rssnr = "234",
                     },
                     Location = new Location()
                     {
                         Latitude = "1",
                         Altitude = "1",
                         Longitude="1",
-                        DateTime= new DateTime(2008, 3, 1, 7, 9, 0),
-                        TimeZone = "test1",
-                        Accuracy ="234"
+                        Accuracy ="234",
+                        Speed ="222",
+                        SpeedAccuracy="1"
                     }
                 }
             };

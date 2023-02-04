@@ -23,12 +23,9 @@ namespace GeolokalizatorSerwer.Entities
         public DbSet<Location> Locations { get; set; }
         public DbSet<Signal> Signals { get; set; }
         public DbSet<User_Data> UserDatas { get; set; }
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .Property(e => e.Email)
-                .IsRequired();
                 
             modelBuilder.Entity<User>()
                 .Property(n => n.Name)

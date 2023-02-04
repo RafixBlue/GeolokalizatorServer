@@ -41,12 +41,17 @@ namespace GeolokalizatorSerwer.Services
             var userId = _userContextService.GetUserId;
 
             var user = _dbContext.Users
-                .Where(u => u.ID == userId).FirstOrDefault();
+                .Include(u => u.Role)
+                .Where(u => u.ID == userId)
+                .FirstOrDefault();
 
             if (user == null) { throw new NotFoundException("User not found"); }
 
-            var accountInfo = _mapper.Map<AccountInfoDto>(user);
-
+            var accountInfo = new AccountInfoDto{
+                Name = user.Name,
+                Role = user.Role.Name
+            };
+           
             return accountInfo;
         }
 
@@ -66,7 +71,6 @@ namespace GeolokalizatorSerwer.Services
             var newUser = new User()
             {
                 Name = dto.Name,
-                Email = dto.Email,
                 RoleID = dto.RoleID
             };
 

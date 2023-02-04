@@ -17,5 +17,8 @@ namespace GeolokalizatorSerwer.Entities
 
         public int LocationID { get; set; }
         public virtual Location Location { get; set; }
+
+        public DateTime MeasurementTime { get; set; }
+        public string TimeZone { get; set; }
     }
 }

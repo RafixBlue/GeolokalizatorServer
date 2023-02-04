@@ -8,7 +8,7 @@ namespace GeolokalizatorServer.Models
     public class AccountInfoDto
     {
         public string Name { get; set; }
-        public int RoleID { get; set; }
+        public string Role { get; set; }
 
     }
 }

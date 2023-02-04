@@ -8,6 +8,6 @@ namespace GeolokalizatorServer.Models
     public class SynchronizationDateTimeDto
     {
         public string TimeZone { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime MeasurementTime { get; set; }
     }
 }

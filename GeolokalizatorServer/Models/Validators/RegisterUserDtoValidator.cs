@@ -13,9 +13,6 @@ namespace GeolokalizatorServer.Models.Validators
 
         public RegisterUserDtoValidator(GeolokalizatorDbContext dbContext)
         {
-            RuleFor(x => x.Email)
-                .NotEmpty()
-                .EmailAddress();
 
             RuleFor(x => x.Password)
                 .MinimumLength(5);
@@ -23,15 +20,7 @@ namespace GeolokalizatorServer.Models.Validators
             RuleFor(x => x.ConfirmPassword)
                 .Equal(e=>e.Password);
 
-            RuleFor(x => x.Email)
-                .Custom((value, context) =>
-                {
-                    var emailInUse = dbContext.Users.Any(u => u.Email == value);
-                    if (emailInUse)
-                    {
-                        context.AddFailure("Email", "Email is already in use");
-                    }
-                });
+            
         }
 
     }

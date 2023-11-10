@@ -63,6 +63,7 @@ namespace GeolokalizatorServer
                 };
             });
             
+            //dodawanie kontrolerów
             services.AddControllers();
 
             //validation
@@ -74,10 +75,10 @@ namespace GeolokalizatorServer
             services.AddDbContext<GeolokalizatorDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GeolokalizatorDbConnection")));
             services.AddScoped<GeolokalizatorSeeder>();
 
-
+            //serwisy
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICollectionTimeService, CollectionTimeService>();
-            //services.AddScoped<ICollectedDataService, CollectedDataService>();
+            services.AddScoped<ICollectedDataService, CollectedDataService>();
             services.AddScoped<ISynchronizationService, SynchronizationService>();
             services.AddScoped<IUserContextService, UserContextService>();
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GeolokalizatorServer.Exceptions;
 using GeolokalizatorServer.Models;
+using GeolokalizatorServer.Models.CollectedDataModels;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GeolokalizatorServer.Services
 {
-    public class CollectedDataService //: ICollectedDataService
+    public class CollectedDataService : ICollectedDataService
     {
         private readonly GeolokalizatorDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -24,44 +25,51 @@ namespace GeolokalizatorServer.Services
             _userContextService = userContextService;
         }
 
-    //    public List<CollectedDataMapDto> CollectedDataMapHour(int year, int month, int day, int hour)
-    //    {
-    //        var userId = _userContextService.GetUserId;
+        public List<CollectedDataDto> CollectedDataHour(int year, int month, int day, int hour,string timezone, string user)
+        {
+            var userId = _userContextService.GetUserId;
 
-    //        var userData = _dbContext.UserDatas
-    //            .Include(ud => ud.Signal)
-    //            .Include(ud => ud.Location)
-    //            .Where(ud => ud.UserID == userId && ud.Location.DateTime.Year == year && ud.Location.DateTime.Month == month && ud.Location.DateTime.Day == day && ud.Location.DateTime.Hour == hour)
-    //            .OrderBy(ud => ud.Location.DateTime)
-    //            .ToList();
+            var userData = _dbContext.UserDatas
+                .Include(ud => ud.Signal)
+                .Include(ud => ud.Location)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud =>  ud.MeasurementTime.Year == year && ud.MeasurementTime.Month == month && ud.MeasurementTime.Day == day && ud.MeasurementTime.Hour == hour && ud.TimeZone == timezone)
+                .OrderBy(ud => ud.MeasurementTime)
+                .ToList();
+            
+            if (userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters"); }
 
-    //        if(userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters");  }
+            var userCollectedData = _mapper.Map<IEnumerable<CollectedDataDto>>(userData);
 
-    //        var userCollectedData = _mapper.Map<List<CollectedDataMapDto>>(userData);
+            return userCollectedData.ToList();
 
-    //        return userCollectedData;
+        }
 
-    //    }
+        public List<CollectedDataDto> CollectedDataLabel(string? place, string? startDate, string? description1, string? description2, string? description3, string user)
+        {
+            var userId = _userContextService.GetUserId;
 
-    //    public List<CollectedDataGraphDto> CollectedDataGraphHour(int year, int month, int day, int hour)
-    //    {
-    //        var userId = _userContextService.GetUserId;
+            var userData = _dbContext.UserDatas
+                .Include(ud => ud.Signal)
+                .Include(ud => ud.Location)
+                .Include(ud => ud.Label)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud => 
+                   (ud.Label.Place == place)
+                && (ud.Label.StartDate == startDate || ud.Label.StartDate == "")
+                && (ud.Label.Description1 == description1 || ud.Label.Description1 == "")
+                && (ud.Label.Description2 == description2 || ud.Label.Description2 == "")
+                && (ud.Label.Description2 == description3 || ud.Label.Description3 == ""))
+                .OrderBy(ud => ud.MeasurementTime)
+                .ToList();
 
-    //        var userData = _dbContext.UserDatas
-    //            .Include(ud => ud.Signal)
-    //            .Include(ud => ud.Location)
-    //            .Where(ud => ud.UserID == userId && ud.Location.DateTime.Year == year && ud.Location.DateTime.Month == month && ud.Location.DateTime.Day == day && ud.Location.DateTime.Hour == hour)
-    //            .OrderBy(ud => ud.Location.DateTime)
-    //            .ToList();
+            if (userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters"); }
 
-    //        if (userData.Count <= 0) { throw new NotFoundException("Data not found for this parameters"); }
+            var userCollectedData = _mapper.Map<IEnumerable<CollectedDataDto>>(userData);
 
-    //        var UserCollectedData = _mapper.Map<List<CollectedDataGraphDto>>(userData);
+            return userCollectedData.ToList();
 
-    //        return UserCollectedData;
+        }
 
-    //    }
-
-        
     }
 }

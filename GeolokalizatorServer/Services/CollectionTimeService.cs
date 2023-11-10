@@ -20,22 +20,12 @@ namespace GeolokalizatorServer.Services
             _userContextService = userContextService;
         }
 
-        //private List<int> GetLocationIdListByUser(int? userId)
-        //{
-        //    var userDatas = _dbContext.UserDatas.Where(u => u.UserID == userId).ToList();
-        //    var locationIDs = userDatas.Select(l => l.LocationID).ToList();
-
-        //    if (locationIDs.Count <= 0) throw new NotFoundException("This user has no location data");
-
-        //    return locationIDs;
-        //}
-
-        public List<string> GetAvailableTimeZones()
+        public List<string> GetAvailableTimeZones(string user)
         {
-            var userId = _userContextService.GetUserId;
+            var userId = _userContextService.GetUserId;          
 
             var availableTimeZones = _dbContext.UserDatas
-                .Where(ud => ud.UserID == userId)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
                 .OrderBy(x => x.TimeZone)
                 .Select(x => x.TimeZone)
                 .Distinct()
@@ -44,13 +34,13 @@ namespace GeolokalizatorServer.Services
             return availableTimeZones;
         }
 
-        public List<int> GetAvailableYears(string timeZone)
+        public List<int> GetAvailableYears(string timeZone, string user)
         {
 
             var userId = _userContextService.GetUserId;
 
             var availableYears = _dbContext.UserDatas
-                .Where(ud => ud.UserID == userId)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
                 .Where(ud => ud.TimeZone == timeZone)
                 .OrderBy(dt => dt.MeasurementTime)
                 .Select(dt => dt.MeasurementTime.Year)
@@ -60,12 +50,12 @@ namespace GeolokalizatorServer.Services
             return availableYears;
         }
 
-        public List<int> GetAvailableMonths(int year, string timeZone)
+        public List<int> GetAvailableMonths(int year, string timeZone, string user)
         {
             var userId = _userContextService.GetUserId;
 
             var availableMonth = _dbContext.UserDatas
-                .Where(ud => ud.UserID == userId)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
                 .Where(ud => ud.TimeZone == timeZone)
                 .Where(ud => ud.MeasurementTime.Year == year)
                 .OrderBy(o => o.MeasurementTime)
@@ -75,12 +65,12 @@ namespace GeolokalizatorServer.Services
 
             return availableMonth;
         }
-        public List<int> GetAvailableDays(int year, int month, string timeZone)
+        public List<int> GetAvailableDays(int year, int month, string timeZone, string user)
         {
             var userId = _userContextService.GetUserId;
 
             var availableDay = _dbContext.UserDatas
-                .Where(ud => ud.UserID == userId)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
                 .Where(ud => ud.TimeZone == timeZone)
                 .Where(ud => ud.MeasurementTime.Year == year)
                 .Where(ud => ud.MeasurementTime.Month == month)
@@ -92,12 +82,12 @@ namespace GeolokalizatorServer.Services
             return availableDay;
         }
 
-        public List<int> GetAvailableHours(int year, int month, int day, string timeZone)
+        public List<int> GetAvailableHours(int year, int month, int day, string timeZone, string user)
         {
             var userId = _userContextService.GetUserId;
 
             var availableHour = _dbContext.UserDatas
-                .Where(ud => ud.UserID == userId)
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
                 .Where(ud => ud.TimeZone == timeZone)
                 .Where(ud => ud.MeasurementTime.Year == year)
                 .Where(ud => ud.MeasurementTime.Month == month)
@@ -110,5 +100,81 @@ namespace GeolokalizatorServer.Services
             return availableHour;
         }
 
+        public List<string> GetAvailablePlace(string user)
+        {
+            var userId = _userContextService.GetUserId;          
+
+            var availablePlaces = _dbContext.UserDatas
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .OrderBy(x => x.Label.Place)
+                .Select(x => x.Label.Place)
+                .Distinct()
+                .ToList();
+
+            return availablePlaces;
+        }
+
+        public List<string> GetAvailableStartTime(string place, string user)
+        {
+            var userId = _userContextService.GetUserId;
+
+            var availableStartTimes = _dbContext.UserDatas
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud => ud.Label.Place == place)
+                .OrderBy(x => x.Label.StartDate)
+                .Select(x => x.Label.StartDate)
+                .Distinct()
+                .ToList();
+
+            return availableStartTimes;
+        }
+
+        public List<string> GetAvailableDescription1(string place, string startTime, string user)
+        {
+            var userId = _userContextService.GetUserId;
+
+            var availableDescription1 = _dbContext.UserDatas
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud => ud.Label.Place == place)
+                .Where(ud => ud.Label.StartDate == startTime)
+                .OrderBy(x => x.Label.Description1)
+                .Select(x => x.Label.Description1)
+                .Distinct()
+                .ToList();
+
+            return availableDescription1;
+        }
+
+        public List<string> GetAvailableDescription2(string place, string startTime, string user)
+        {
+            var userId = _userContextService.GetUserId;
+
+            var availableDescription2 = _dbContext.UserDatas
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud => ud.Label.Place == place)
+                .Where(ud => ud.Label.StartDate == startTime)
+                .OrderBy(x => x.Label.Description2)
+                .Select(x => x.Label.Description2)
+                .Distinct()
+                .ToList();
+
+            return availableDescription2;
+        }
+
+        public List<string> GetAvailableDescription3(string place, string startTime, string user)
+        {
+            var userId = _userContextService.GetUserId;
+
+            var availableDescription3 = _dbContext.UserDatas
+                .Where(ud => (ud.UserID == userId && user == "") || ud.User.Name == user)
+                .Where(ud => ud.Label.Place == place)
+                .Where(ud => ud.Label.StartDate == startTime)
+                .OrderBy(x => x.Label.Description3)
+                .Select(x => x.Label.Description3)
+                .Distinct()
+                .ToList();
+
+            return availableDescription3;
+        }
     }
 }

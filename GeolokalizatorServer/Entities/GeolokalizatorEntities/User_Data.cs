@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeolokalizatorServer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace GeolokalizatorSerwer.Entities
 
         public int LocationID { get; set; }
         public virtual Location Location { get; set; }
+
+        public int LabelID { get; set; }
+        public virtual Label Label { get; set; }
 
         public DateTime MeasurementTime { get; set; }
         public string TimeZone { get; set; }

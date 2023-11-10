@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeolokalizatorServer.Migrations
 {
     [DbContext(typeof(GeolokalizatorDbContext))]
-    [Migration("20220820073253_synchronization")]
-    partial class synchronization
+    [Migration("20230423171502_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,33 @@ namespace GeolokalizatorServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GeolokalizatorServer.Entities.Label", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Place")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Labels");
+                });
 
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.Location", b =>
                 {
@@ -34,13 +61,16 @@ namespace GeolokalizatorServer.Migrations
                     b.Property<string>("Altitude")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Latitude")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Longitude")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Speed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpeedAccuracy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -71,22 +101,37 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Asu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bandwidth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Earfcn")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Network_Provider")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Network_Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RSRP")
+                    b.Property<string>("Rsrp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RSRQ")
+                    b.Property<string>("Rsrq")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RSSI")
+                    b.Property<string>("Rssi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RSSNR")
+                    b.Property<string>("Rssnr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tac")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -101,14 +146,10 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DeviceNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FinishDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("LastSynchronization")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
                     b.Property<string>("TimeZone")
                         .HasColumnType("nvarchar(max)");
@@ -130,16 +171,13 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleID")
@@ -159,20 +197,33 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LabelID")
+                        .HasColumnType("int");
+
                     b.Property<int>("LocationID")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("MeasurementTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("SignalID")
                         .HasColumnType("int");
+
+                    b.Property<string>("TimeZone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("LabelID");
+
                     b.HasIndex("LocationID");
 
                     b.HasIndex("SignalID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("UserDatas");
                 });
@@ -201,6 +252,12 @@ namespace GeolokalizatorServer.Migrations
 
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.User_Data", b =>
                 {
+                    b.HasOne("GeolokalizatorServer.Entities.Label", "Label")
+                        .WithMany()
+                        .HasForeignKey("LabelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GeolokalizatorSerwer.Entities.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationID")
@@ -213,9 +270,19 @@ namespace GeolokalizatorServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GeolokalizatorSerwer.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Label");
+
                     b.Navigation("Location");
 
                     b.Navigation("Signal");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

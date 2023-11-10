@@ -24,21 +24,23 @@ namespace GeolokalizatorServer.Controllers
             
         }
 
-//        [HttpGet("map/hour")]
-//        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
-//{
-//            var mapData = _collectedDataService.CollectedDataMapHour(year, month, day, hour);
+        [HttpGet("hour")]
+        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour, [FromQuery] string timezone, [FromQuery] string user)
+        {
+            var data = _collectedDataService.CollectedDataHour(year, month, day, hour, timezone,user);
 
-//            return Ok(mapData);
-//        }
+            return Ok(data);
+        }
 
-//        [HttpGet("graph/hour")]
-//        public ActionResult<IEnumerable<CollectedDataGraphDto>> GetDataForGraphHour([FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour)
-//        {
-//            var graphData = _collectedDataService.CollectedDataGraphHour(year, month, day, hour);
-            
-//            return Ok(graphData);
-//        }
+        [HttpGet("label")]
+        public ActionResult<IEnumerable<CollectedDataMapDto>> GetDataForMapLabel([FromQuery] string? place, [FromQuery] string? startTime, [FromQuery] string? description1, [FromQuery] string? description2, [FromQuery] string? description3, [FromQuery] string user)
+        {
+            var data = _collectedDataService.CollectedDataLabel(place,startTime, description1, description2, description3,user);
+
+            return Ok(data);
+        }
+       
 
     }
+   
 }

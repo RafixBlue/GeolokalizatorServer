@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GeolokalizatorServer.Models;
+using GeolokalizatorServer.Models.CollectedDataModels;
 using GeolokalizatorSerwer.Entities;
 
 namespace GeolokalizatorServer
@@ -12,48 +13,8 @@ namespace GeolokalizatorServer
     {
         public GeolokalizatorMappingProfile()
         {
-            //CreateMap<User_Data, CollectedDataMapDto>()
-            //    .ForMember(m => m.Latitude, c => c.MapFrom(l => l.Location.Latitude))
-            //    .ForMember(m => m.Altitude, c => c.MapFrom(l => l.Location.Altitude))
-            //    .ForMember(m => m.Longitude, c => c.MapFrom(l => l.Location.Longitude))
-            //    .ForMember(m => m.Accuracy, c => c.MapFrom(l => l.Location.Accuracy))
-            //    .ForMember(m => m.DateTime, c => c.MapFrom(l => l.Location.DateTime.ToString("HH:mm")))
-            //    .ForMember(m => m.TimeZone, c => c.MapFrom(l => l.Location.TimeZone))
-            //    .ForMember(m => m.Network_Provider, c => c.MapFrom(s => s.Signal.Network_Provider))
-            //    .ForMember(m => m.Network_Type, c => c.MapFrom(s => s.Signal.Network_Type))
-            //    .ForMember(m => m.RSSI, c => c.MapFrom(s => s.Signal.RSSI))
-            //    .ForMember(m => m.RSRQ, c => c.MapFrom(s => s.Signal.RSRQ))
-            //    .ForMember(m => m.RSRP, c => c.MapFrom(s => s.Signal.RSRP))
-            //    .ForMember(m => m.RSSNR, c => c.MapFrom(s => s.Signal.RSSNR));
 
-            //CreateMap<User_Data, CollectedDataGraphDto>()
-            //    .ForMember(m => m.DateTime, c => c.MapFrom(l => l.Location.DateTime.Minute.ToString()))
-            //    .ForMember(m => m.Accurency, c => c.MapFrom(l => l.Location.Accuracy))
-            //    .ForMember(m => m.Network_Provider, c => c.MapFrom(s => s.Signal.Network_Provider))
-            //    .ForMember(m => m.Network_Type, c => c.MapFrom(s => s.Signal.Network_Type))
-            //    .ForMember(m => m.RSSI, c => c.MapFrom(s => s.Signal.RSSI))
-            //    .ForMember(m => m.RSRP, c => c.MapFrom(s => s.Signal.RSRP))
-            //    .ForMember(m => m.RSRQ, c => c.MapFrom(s => s.Signal.RSRQ))
-            //    .ForMember(m => m.RSSNR, c => c.MapFrom(s => s.Signal.RSSNR));
-
-            //CreateMap<User_Data, SynchronizationDataDto>()
-            //    .ForMember(m => m.UserId, c => c.MapFrom(ud => ud.UserID))
-            //    .ForMember(m => m.Latitude, c => c.MapFrom(l => l.Location.Latitude))
-            //    .ForMember(m => m.Altitude, c => c.MapFrom(l => l.Location.Altitude))
-            //    .ForMember(m => m.Longitude, c => c.MapFrom(l => l.Location.Longitude))
-            //    .ForMember(m => m.Accuracy, c => c.MapFrom(l => l.Location.Accuracy))
-            //    .ForMember(m => m.DateTime, c => c.MapFrom(l => l.Location.DateTime.ToString()))
-            //    .ForMember(m => m.TimeZone, c => c.MapFrom(l => l.Location.TimeZone))
-            //    .ForMember(m => m.Network_Provider, c => c.MapFrom(s => s.Signal.Network_Provider))
-            //    .ForMember(m => m.Network_Type, c => c.MapFrom(s => s.Signal.Network_Type))
-            //    .ForMember(m => m.RSSI, c => c.MapFrom(s => s.Signal.RSSI))
-            //    .ForMember(m => m.RSRP, c => c.MapFrom(s => s.Signal.RSRP))
-            //    .ForMember(m => m.RSRQ, c => c.MapFrom(s => s.Signal.RSRQ))
-            //    .ForMember(m => m.RSSNR, c => c.MapFrom(s => s.Signal.RSSNR));
-
-            CreateMap<SynchronizationDataDto, User_Data>()
-                //.ForPath(m => m.Location.DateTime, c => c.MapFrom(x => DateTime.Parse(x.DateTime)))
-                //.ForPath(m => m.Location.TimeZone, c => c.MapFrom(x => x.TimeZone))
+            CreateMap<SynchronizationDataDto, User_Data>()             
                 .ForPath(m => m.Location.Latitude, c => c.MapFrom(x => x.Latitude))
                 .ForPath(m => m.Location.Altitude, c => c.MapFrom(x => x.Altitude))
                 .ForPath(m => m.Location.Longitude, c => c.MapFrom(x => x.Longitude))
@@ -71,8 +32,40 @@ namespace GeolokalizatorServer
                 .ForPath(m => m.Signal.Rssi, c => c.MapFrom(x => x.Rssi))
                 .ForPath(m => m.Signal.Rsrp, c => c.MapFrom(x => x.Rsrp))
                 .ForPath(m => m.Signal.Rsrq, c => c.MapFrom(x => x.Rsrq))
-                .ForPath(m => m.Signal.Rssnr, c => c.MapFrom(x => x.Rssnr));
+                .ForPath(m => m.Signal.Rssnr, c => c.MapFrom(x => x.Rssnr))
 
+                .ForPath(m => m.Label.Place, c => c.MapFrom(x => x.Place))
+                .ForPath(m => m.Label.StartDate, c => c.MapFrom(x => x.StartDate))
+                .ForPath(m => m.Label.Description1, c => c.MapFrom(x => x.Description1))
+                .ForPath(m => m.Label.Description2, c => c.MapFrom(x => x.Description2))
+                .ForPath(m => m.Label.Description3, c => c.MapFrom(x => x.Description3));
+
+            CreateMap<User_Data, CollectedDataDto>()               
+                .ForMember(m => m.MeasurementTime, c => c.MapFrom(x => x.MeasurementTime.Hour))
+                .ForPath(m => m.Latitude, c => c.MapFrom(x => x.Location.Latitude))
+                .ForPath(m => m.Altitude, c => c.MapFrom(x => x.Location.Altitude))
+                .ForPath(m => m.Longitude, c => c.MapFrom(x => x.Location.Longitude))
+                .ForPath(m => m.Accuracy, c => c.MapFrom(x => x.Location.Accuracy))
+                .ForPath(m => m.Speed, c => c.MapFrom(x => x.Location.Speed))
+                .ForPath(m => m.SpeedAccuracy, c => c.MapFrom(x => x.Location.SpeedAccuracy))
+
+                .ForPath(m => m.Network_Provider, c => c.MapFrom(x => x.Signal.Network_Provider))
+                .ForPath(m => m.Network_Type, c => c.MapFrom(x => x.Signal.Network_Type))
+                .ForPath(m => m.Bandwidth, c => c.MapFrom(x => x.Signal.Bandwidth))
+                .ForPath(m => m.Earfcn, c => c.MapFrom(x => x.Signal.Earfcn))
+                .ForPath(m => m.Tac, c => c.MapFrom(x => x.Signal.Tac))
+                .ForPath(m => m.Asu, c => c.MapFrom(x => x.Signal.Asu))
+                .ForPath(m => m.Ta, c => c.MapFrom(x => x.Signal.Ta))
+                .ForPath(m => m.Rssi, c => c.MapFrom(x => x.Signal.Rssi))
+                .ForPath(m => m.Rsrp, c => c.MapFrom(x => x.Signal.Rsrp))
+                .ForPath(m => m.Rsrq, c => c.MapFrom(x => x.Signal.Rsrq))
+                .ForPath(m => m.Rssnr, c => c.MapFrom(x => x.Signal.Rssnr))
+
+                .ForPath(m => m.Place, c => c.MapFrom(x => x.Label.Place))
+                .ForPath(m => m.StartDate, c => c.MapFrom(x => x.Label.StartDate))
+                .ForPath(m => m.Description1, c => c.MapFrom(x => x.Label.Description1))
+                .ForPath(m => m.Description2, c => c.MapFrom(x => x.Label.Description2))
+                .ForPath(m => m.Description3, c => c.MapFrom(x => x.Label.Description3));
             //CreateMap<SynchronizationDto, Synchronization>()
             //    .ForMember(m => m.LastSynchronization, c => c.MapFrom(x => x.NewSynchronizationDate));
 

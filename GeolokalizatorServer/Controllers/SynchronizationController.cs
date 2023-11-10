@@ -1,5 +1,4 @@
-﻿using GeolokalizatorServer.Migrations;
-using GeolokalizatorServer.Models;
+﻿using GeolokalizatorServer.Models;
 using GeolokalizatorServer.Services.Interfaces;
 using GeolokalizatorSerwer.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -22,15 +21,6 @@ namespace GeolokalizatorServer.Controllers
         {
             _synchronizationService = synchronizationService;
         }
-
-        //[HttpPatch("update/lastdate")]
-        //public ActionResult UpdateLastSynchronizationDate([FromBody] SynchronizationDto dto)
-        //{
-
-        //    _synchronizationService.UpdateDeviceLastSynchronizationDate(dto);
-
-        //    return Ok();
-        //}
 
         [HttpPost("insert/data")]
         public ActionResult Synchronize([FromBody] List<SynchronizationDataDto> dto)

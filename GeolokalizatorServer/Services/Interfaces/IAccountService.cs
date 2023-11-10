@@ -13,5 +13,6 @@ namespace GeolokalizatorSerwer.Services.Interfaces
         public string GenerateJwt(LoginDto dto);
         public void RegisterUser(RegisterUserDto dto);
         public AccountInfoDto GetAccountInfo();
+        public List<string> GetUsers();
     }
 }

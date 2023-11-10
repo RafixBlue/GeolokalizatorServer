@@ -1,4 +1,5 @@
 ﻿using GeolokalizatorServer.Models;
+using GeolokalizatorServer.Models.CollectedDataModels;
 using GeolokalizatorSerwer.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace GeolokalizatorServer.Services.Interfaces
 {
     public interface ICollectedDataService
     {
-        public List<CollectedDataMapDto> CollectedDataMapHour(int year, int month, int day, int hour);
-        public List<CollectedDataGraphDto> CollectedDataGraphHour(int year, int month, int day, int hour);
+        public List<CollectedDataDto> CollectedDataHour(int year, int month, int day, int hour, string timezone, string user);
+        public List<CollectedDataDto> CollectedDataLabel(string? place,string? startDate, string? description1, string? description2, string? description3,string? user);
     }
 }

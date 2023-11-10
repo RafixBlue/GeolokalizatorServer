@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeolokalizatorServer.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace GeolokalizatorSerwer.Entities
         public DbSet<Location> Locations { get; set; }
         public DbSet<Signal> Signals { get; set; }
         public DbSet<User_Data> UserDatas { get; set; }
-       
+        public DbSet<Label> Labels { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                 

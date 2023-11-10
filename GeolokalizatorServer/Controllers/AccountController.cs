@@ -62,13 +62,22 @@ namespace GeolokalizatorSerwer.Controllers
             return Ok(allRoles);
         }
 
-        [HttpGet("test")]
+        /*[HttpGet("test")]
         public ActionResult<IEnumerable<Role>> GetTest()// [FromQuery] int userId, [FromQuery] int year, [FromQuery] int month, [FromQuery] int day, [FromQuery] int hour
         {
             //var allRoles = _accountService.GetAllRoles();
             //var test = _accountService.CollectedDataForMap(1, 2008, 3, 1, 7);
 
             return Ok("test");
+        }*/
+        [HttpGet("users")]
+        [Authorize]
+        public ActionResult<List<string>> GetUsers()
+        {
+            var users = _accountService.GetUsers();
+            
+
+            return Ok(users);
         }
     }
 }

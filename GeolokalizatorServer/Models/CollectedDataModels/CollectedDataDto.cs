@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeolokalizatorServer.Models
+namespace GeolokalizatorServer.Models.CollectedDataModels
 {
-    public class SynchronizationDataDto
+    public class CollectedDataDto
     {
         public int UserId { get; set; }
         public string MeasurementTime { get; set; }
@@ -35,5 +35,6 @@ namespace GeolokalizatorServer.Models
         public string Description1 { get; set; }
         public string Description2 { get; set; }
         public string Description3 { get; set; }
+
     }
 }

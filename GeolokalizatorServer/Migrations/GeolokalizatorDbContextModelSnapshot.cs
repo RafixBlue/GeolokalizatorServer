@@ -19,6 +19,33 @@ namespace GeolokalizatorServer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("GeolokalizatorServer.Entities.Label", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Place")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Labels");
+                });
+
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.Location", b =>
                 {
                     b.Property<int>("ID")
@@ -168,6 +195,9 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LabelID")
+                        .HasColumnType("int");
+
                     b.Property<int>("LocationID")
                         .HasColumnType("int");
 
@@ -184,6 +214,8 @@ namespace GeolokalizatorServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("LabelID");
 
                     b.HasIndex("LocationID");
 
@@ -218,6 +250,12 @@ namespace GeolokalizatorServer.Migrations
 
             modelBuilder.Entity("GeolokalizatorSerwer.Entities.User_Data", b =>
                 {
+                    b.HasOne("GeolokalizatorServer.Entities.Label", "Label")
+                        .WithMany()
+                        .HasForeignKey("LabelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GeolokalizatorSerwer.Entities.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationID")
@@ -235,6 +273,8 @@ namespace GeolokalizatorServer.Migrations
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Label");
 
                     b.Navigation("Location");
 

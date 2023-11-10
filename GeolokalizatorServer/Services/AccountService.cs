@@ -122,8 +122,16 @@ namespace GeolokalizatorSerwer.Services
             return tokenHandler.WriteToken(token);
         }
 
-        
+        public List<string> GetUsers()
+        {
+            var userId = _userContextService.GetUserId;
 
-       
+            var users = _dbContext.Users.Where(w => w.Role.ID == 1 || w.ID == userId).Select(s => s.Name);
+
+            return users.ToList();
+        }
+
+
+
     }
 }
